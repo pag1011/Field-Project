@@ -1,0 +1,109 @@
+welcome_message = "Welcome to the Electronic Voting Machine (E.V.M.)"
+screen_width = 80
+print(welcome_message.center(screen_width))
+
+candidates = ["Prachi", "Sarthak", "Somya", "Tarun", "Suhani"]
+
+symbol = [1, 2, 3, 4, 5]
+
+print("Candidates\tSymbol")
+
+for i in range(len(candidates)):
+    print(candidates[i] + "\t\t" + str(symbol[i]))
+
+print("Total number of voters who can caste their vote = 10 ")
+
+message_1 = "Please enter your voter id."
+screen_width = 80
+print(message_1.center(screen_width))
+
+voters = input("Please enter your email id = ")
+
+message_2 = "Please enter the otp sent to your gmail id. Do not share with anyone."
+screen_width = 80
+print(message_2.center(screen_width))
+
+import random
+import smtplib
+otp=''.join([str(random.randint(0,9)) for i in range(4)])
+
+server=smtplib.SMTP('smtp.gmail.com',587)
+server.starttls()
+server.login('prachiagrawal0810@gmail.com','avjefdswnkwfebzk')
+msg='Hello, your otp is ' +str(otp)
+server.sendmail('prachiagrawal0810@gmail.com','project55field@gmail.com',msg)
+n=int(input("enter your otp = "))
+print(n)
+if msg == n:
+    print(" not Verified.")
+else:
+    print("verified.")
+
+server.quit()
+
+message_3 = "Your voter id is verified. Now you can caste your vote by pressing the given symbols of respective candidates of your own choice."
+print(message_3)
+
+candidate_1_count = 0
+candidate_2_count = 0
+candidate_3_count = 0
+candidate_4_count = 0
+candidate_5_count = 0
+voterselection = []
+
+voter_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+num_of_voters = len(voter_list)
+
+while True:
+    if voter_list == []:
+        print("Voting session will be over.")
+        if candidate_1_count > candidate_2_count and candidate_1_count > candidate_3_count and candidate_1_count > candidate_4_count and candidate_1_count > candidate_5_count:
+            percent=(candidate_1_count/num_of_voters)*100
+            print(candidates[0],"has won with",candidate_1_count,"votes.")
+            break
+        elif candidate_2_count > candidate_1_count and candidate_2_count > candidate_3_count and candidate_2_count > candidate_4_count and candidate_2_count > candidate_5_count:
+            percent=(candidate_2_count/num_of_voters)*100
+            print(candidates[1],"has won with",candidate_2_count,"votes.")
+            break
+        elif candidate_3_count > candidate_1_count and candidate_3_count > candidate_2_count and candidate_3_count > candidate_4_count and candidate_3_count > candidate_5_count:
+            percent=(candidate_3_count/num_of_voters)*100
+            print(candidates[2],"has won with",candidate_3_count,"votes.")
+            break
+        elif candidate_4_count > candidate_1_count and candidate_4_count > candidate_2_count and candidate_4_count > candidate_3_count and candidate_4_count > candidate_5_count:
+            percent=(candidate_4_count/num_of_voters)*100
+            print(candidates[3],"has won with",candidate_4_count,"votes.")
+            break
+        elif candidate_5_count > candidate_1_count and candidate_5_count > candidate_2_count and candidate_5_count > candidate_3_count and candidate_5_count > candidate_4_count:
+            percent=(candidate_5_count/num_of_voters)*100
+            print(candidates[4],"has won with",candidate_5_count,"votes.")
+            break
+
+    else:
+        voter=int(input("Enter your voter id number = "))
+        if voter in voter_list:
+            print("You are a voter.")
+            voter_list.remove(voter)
+            vote = int(input("Press 1 for candidate first and press 2 for candidate second Press 3 for candidate three and Press 4 for candidate fourth and Press 5 for candidate fifth = "))
+            if vote == 1:
+                candidate_1_count+=1
+                print("\nThanks to vote me\n")
+
+            elif vote == 2:
+                candidate_2_count+=1
+                print("\nThanks to vote me\n")
+
+            elif vote == 3:
+                candidate_3_count+=1
+                print("\nThanks to vote me\n")
+
+            elif vote == 4:
+                candidate_4_count+=1
+                print("\nThanks to vote me\n")
+
+            elif vote == 5:
+                candidate_5_count+=1
+                print("\nThanks to vote me\n")
+
+        else:
+            print("You are not a voter.")
